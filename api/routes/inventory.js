@@ -42,6 +42,10 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
             })
         })
         .catch((error) => {
+            res.status(500).json({
+                message: "Failed",
+                sucess: false
+            })
             console.log(error);
         });
 })
