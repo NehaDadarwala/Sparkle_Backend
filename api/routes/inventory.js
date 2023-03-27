@@ -1,7 +1,7 @@
 const express = require('express')
-const ProductMaster = require('../../models/inventory/productMasterSchema')
 const router = express.Router()
-const multer = require('multer')
+const multer = require('multer');
+const ProductMaster = require('../models/product_master');
 
 const Storage = multer.diskStorage({
     destination : 'uploads',
