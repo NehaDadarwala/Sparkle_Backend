@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
 const billsSchema = new mongoose.Schema({
-    billNumber: {
-        type: Number,
-        require: true
-    },
+    // billNumber: {
+    //     type: Number,
+    //     require: true
+    // },
+    _id: String,
     customerName: {
         type: String,
         require: true

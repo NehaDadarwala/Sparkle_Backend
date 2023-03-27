@@ -8,7 +8,7 @@ router.get('/find/:id', getBill, async (req, res) => {
 
 router.post('/newRefund', async (req, res) => {
     const bill = new bills({
-        billNumber: generateBillNumber(),
+        _id: generateBillNumber(),
         customerName: req.body.customerName,
         orderDate: req.body.orderDate,
         products: req.body.products,
