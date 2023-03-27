@@ -16,4 +16,7 @@ app.use(express.json())
 const refundRouter = require('./api/routes/refund')
 app.use('/refund', refundRouter)
 
+const inventoryRouter = require('./api/routes/inventory')
+app.use('/inventory', inventoryRouter)
+
 app.listen(3000, () => console.log('Server Started'))

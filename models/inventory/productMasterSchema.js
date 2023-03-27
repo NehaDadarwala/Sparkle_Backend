@@ -10,21 +10,20 @@ const productMasterSchema = new mongoose.Schema({
         required: true
     },
     qty: {
-        type: Int32,
+        type: Number,
         required: true
     },
     price: {
-        type: Double,
+        type: Number,
         required: true
     },
     product_description: {
         type: String,
         required: true
     },
-    image: {
-        data: Buffer,
-        contentType: String,
-        required: true
+    image:{
+        data : Buffer,
+        contentType: String
     }
 }, {
     collection: 'product_master'
