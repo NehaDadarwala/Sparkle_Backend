@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const repair = require('../models/repairForm');
+const repair = require('../models/repairform');
 
 router.get('/', async (req, res) => {
     res.json({message: "Repair works"})
