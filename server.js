@@ -1,10 +1,10 @@
 require('dotenv').config()
-process.env.NO_PROXY = 'registry.npmjs.org';
+
 const express  = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors');
-const https = require('http')
+
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL)
 
@@ -13,12 +13,6 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.error('Connected to the database'))
 
 app.use(express.json())
-
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//     next();
-//   });
 
   app.use(cors({
     "origin" : '*',
@@ -34,8 +28,5 @@ app.use('/inventory', inventoryRouter)
 const repairRouter = require('./api/routes/repairs')
 app.use('/repair', repairRouter)
 
-const port = process.env.port || 3000;
-const server = https.createServer(app);
-server.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-  });;
+
+app.listen(3000, () => console.log('Server Started'))
