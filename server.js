@@ -19,4 +19,8 @@ app.use('/refund', refundRouter)
 const inventoryRouter = require('./api/routes/inventory')
 app.use('/inventory', inventoryRouter)
 
+const repairRouter = require('./api/routes/repairs')
+app.use('/repair', repairRouter)
+
+
 app.listen(3000, () => console.log('Server Started'))
