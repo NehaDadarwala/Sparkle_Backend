@@ -15,7 +15,6 @@ db.once('open', () => console.error('Connected to the database'))
 app.use(express.json())
 
 app.use(cors());
-
 const refundRouter = require('./api/routes/refund')
 app.use('/refund', refundRouter)
 
