@@ -19,7 +19,8 @@ app.use((req, res, next) => {
     next();
   });
   app.use(cors({
-    origin: '*'
+    "origin" : '*',
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   }));
 
 const refundRouter = require('./api/routes/refund')
