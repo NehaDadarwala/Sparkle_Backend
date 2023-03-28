@@ -6,7 +6,7 @@ const ProductMaster = require('../models/product_master');
 const fs = require('fs');
 
 const Storage = multer.diskStorage({
-    destination: 'images',
+    destination: 'public/images',
     filename: async (req, file, cb) => {
         const ref_number = await generateProductRefNumber(req.body.category_id);
         const newfile_name = ref_number + '.png'

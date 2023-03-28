@@ -13,7 +13,7 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.error('Connected to the database'))
 
 app.use(express.json())
-
+app.use('/public',express.static('public'));  
 app.use(cors());
 const refundRouter  = require('./api/routes/refund')
 app.use('/refund', refundRouter)
