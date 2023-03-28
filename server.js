@@ -4,7 +4,7 @@ const express  = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors');
-
+const https = require('https')
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL)
 
@@ -34,5 +34,8 @@ app.use('/inventory', inventoryRouter)
 const repairRouter = require('./api/routes/repairs')
 app.use('/repair', repairRouter)
 
-
-app.listen(3000, () => console.log('Server Started'))
+const port = process.env.port || 3000;
+const server = https.createServer(app);
+server.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });;
