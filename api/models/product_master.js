@@ -5,8 +5,12 @@ const productMasterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    product_category: {
-        type: String,
+    // product_category: {
+    //     type: String,
+    //     required: true
+    // },
+    category_id: {
+        type: Number,
         required: true
     },
     qty: {
@@ -24,6 +28,10 @@ const productMasterSchema = new mongoose.Schema({
     image:{
         data : Buffer,
         contentType: String
+    },
+    product_ref_number:{
+        type: String,
+        required: true
     }
 }, {
     collection: 'product_master'

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer');
+const CategoryMaster = require('../models/category_master');
 const ProductMaster = require('../models/product_master');
 
 const Storage = multer.diskStorage({
@@ -18,6 +19,27 @@ const upload = multer({
 router.get('/', async (req, res) => {
     res.json({ message: "Basic Invetory API" })
 })
+
+function generateProductRefNumber(product_name , product_category)
+{
+    const product_ref_number ="";
+    return product_ref_number;
+}
+
+router.get('/category', (req,res)  =>{
+    CategoryMaster.find({}).then(data => {
+        res.status(200).json({
+            message: "Category Retrived",
+            sucess: "true",
+            category: data
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message: "Failed",
+            sucess: "false"
+        })
+    });
+});
 
 router.post('/addProduct', upload.single("image"), async (req, res) => {
     console.log(req.body);
@@ -48,6 +70,22 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
             })
             console.log(error);
         });
+})
+
+router.get('/viewStock',async(req,res) =>{
+    ProductMaster.find({}).then(data => {
+        res.status(200).json({
+            message: "Stock Retrived",
+            sucess: "true",
+            stock: data
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message: "Failed",
+            sucess: "false"
+        })
+    });
+
 })
 
 module.exports = router;
