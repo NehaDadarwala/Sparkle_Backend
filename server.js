@@ -18,7 +18,9 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
-app.use(cors())
+  app.use(cors({
+    origin: '*'
+  }));
 
 const refundRouter = require('./api/routes/refund')
 app.use('/refund', refundRouter)
