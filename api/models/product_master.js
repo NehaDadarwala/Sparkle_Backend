@@ -25,13 +25,17 @@ const productMasterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    product_ref_number:{
+    product_ref_number: {
         type: String,
         required: true
     },
+    // image: {
+    //     data: Buffer,
+    //     contentType: String
+    // }
     image:{
-        data : Buffer,
-        contentType: String
+        type: String,
+        required: true
     }
 }, {
     collection: 'product_master'

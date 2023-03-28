@@ -3,11 +3,14 @@ const router = express.Router()
 const multer = require('multer');
 const CategoryMaster = require('../models/category_master');
 const ProductMaster = require('../models/product_master');
+const fs = require('fs');
 
 const Storage = multer.diskStorage({
     destination: 'images',
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
+    filename: async (req, file, cb) => {
+        const ref_number = await generateProductRefNumber(req.body.category_id);
+        const newfile_name = ref_number + '.png'
+        cb(null, newfile_name);
     }
 })
 
@@ -64,7 +67,7 @@ router.get('/category', async (req, res) => {
 router.post('/addProduct', upload.single("image"), async (req, res) => {
     const ref_number = await generateProductRefNumber(req.body.category_id);
     console.log(ref_number)
-
+    const newfile_name = ref_number + '.png'
     const newProduct = new ProductMaster({
         product_name: req.body.product_name,
         category_id: req.body.category_id,
@@ -72,10 +75,12 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
         price: req.body.price,
         product_description: req.body.product_description,
         product_ref_number: ref_number,
-        image: {
-            data: req.file.filename,
-            contentType: 'image/png '
-        }
+        // image: {
+        //     data: fs.readFileSync('images/'+ req.file.filename ) ,
+        //     contentType: 'image/png '
+        // }
+
+        image: newfile_name
     });
     await newProduct.save()
         .then((data) => {
