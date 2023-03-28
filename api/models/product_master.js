@@ -10,7 +10,7 @@ const productMasterSchema = new mongoose.Schema({
     //     required: true
     // },
     category_id: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     qty: {
@@ -25,13 +25,13 @@ const productMasterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    image:{
-        data : Buffer,
-        contentType: String
-    },
     product_ref_number:{
         type: String,
         required: true
+    },
+    image:{
+        data : Buffer,
+        contentType: String
     }
 }, {
     collection: 'product_master'

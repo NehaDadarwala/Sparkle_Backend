@@ -20,13 +20,24 @@ router.get('/', async (req, res) => {
     res.json({ message: "Basic Invetory API" })
 })
 
-function generateProductRefNumber(product_name , product_category)
+function generateProductRefNumber() //product_name , product_category
 {
-    const product_ref_number ="";
+    const results = ProductMaster.aggregate([
+        {
+          $lookup: {
+            from: 'category_master',
+            localField: 'category_id',
+            foreignField: '_id',
+            as: 'category'
+          }
+        }
+      ]);
+      console.log(results);
+    const product_ref_number ="RN-1";
     return product_ref_number;
 }
 
-router.get('/category', (req,res)  =>{
+router.get('/category', async(req,res)  =>{
     CategoryMaster.find({}).then(data => {
         res.status(200).json({
             message: "Category Retrived",
@@ -42,14 +53,13 @@ router.get('/category', (req,res)  =>{
 });
 
 router.post('/addProduct', upload.single("image"), async (req, res) => {
-    console.log(req.body);
-
     const newProduct = new ProductMaster({
         product_name: req.body.product_name,
-        product_category: req.body.product_category,
+        category_id: req.body.category_id,
         qty: req.body.qty,
         price: req.body.price,
         product_description: req.body.product_description,
+        product_ref_number:generateProductRefNumber(),
         image: {
             data : req.file.filename,
             contentType:'image/png '
@@ -57,7 +67,6 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
     }); 
     await newProduct.save()
         .then((data) => {
-            console.log(data)
             res.status(200).json({
                 message: "Product Added Sucessfully",
                 sucess: true
@@ -79,11 +88,12 @@ router.get('/viewStock',async(req,res) =>{
             sucess: "true",
             stock: data
         })
-    }).catch(err => {
+    }).catch(error => {
         res.status(500).json({
             message: "Failed",
             sucess: "false"
         })
+        console.log(error);
     });
 
 })
