@@ -7,8 +7,17 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/create', async (req, res) => {
-    
+
+  function pad2(n) { 
+    return n < 10 ? '0' + n : n 
+}
+const invoiceid = () => {
+    var date = new Date();
+    var invoice = date.getFullYear().toString() + pad2(date.getMonth() + 1) + pad2(date.getDate()) + pad2(date.getHours()) + pad2(date.getMinutes()) + pad2(date.getSeconds())
+    return invoice
+}
     const repairForm = new repair({ 
+        _id : invoiceid(),
         phoneNumber :req.body.phoneNumber,
         bagNumber :req.body.bagNumber,
         customerName :req.body.customerName,
@@ -18,6 +27,7 @@ router.post('/create', async (req, res) => {
         instruction :req.body.instruction,
 
     });
+   
     try {
       await repairForm.save();
       res.json({
@@ -51,5 +61,4 @@ router.get('/list' ,async (req ,res) => {
         });
       }
 })
-
 module.exports = router;

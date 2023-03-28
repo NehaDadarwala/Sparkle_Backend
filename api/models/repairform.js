@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 
 const repairSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        require: true
+    },
     phoneNumber: {
         type: Number,
         require: true
