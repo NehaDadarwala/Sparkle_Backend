@@ -61,4 +61,38 @@ router.get('/list' ,async (req ,res) => {
         });
       }
 })
+
+router.put('/modify/:id', async (req, res) => {
+  
+  try {
+    const userId = req.params.id;
+  const { repairBag, status } = req.body;
+  const updatedRepair = await User.findByIdAndUpdate(
+    userId,
+    { repairBag, status },
+    { new: true }
+  );
+ 
+
+    if (!updatedRepair) {
+      return res.status(404).json({
+        success: false,
+        message: 'Repair not found',
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Repair updated',
+      user: updatedRepair,
+    });
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+    });
+  }
+});
+
 module.exports = router;
