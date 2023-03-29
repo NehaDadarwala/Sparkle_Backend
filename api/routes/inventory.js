@@ -115,4 +115,23 @@ router.get('/viewStock', async (req, res) => {
 
 })
 
+router.get('/getProductRefNumber', async (req, res) => {
+    ProductMaster.find({},{product_ref_number:1}).then(data => {
+        const transformedStock = data.map(item => ({ label: item.product_ref_number }));
+        
+        res.status(200).json({
+            message: "Stock Retrived",
+            sucess: "true",
+            product_ref_number: transformedStock
+        })
+    }).catch(error => {
+        res.status(500).json({
+            message: "Failed",
+            sucess: "false"
+        })
+        console.log(error);
+    });
+
+})
+
 module.exports = router;
