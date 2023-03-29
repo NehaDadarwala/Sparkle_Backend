@@ -51,10 +51,12 @@ async function generateProductRefNumber(category_id)
 
 router.get('/category', async (req, res) => {
     CategoryMaster.find({}).then(data => {
+        const transformedStock = data.map(item => ({ label: item.category_name , _id:item._id}));
+        
         res.status(200).json({
             message: "Category Retrived",
             sucess: "true",
-            category: data
+            category: transformedStock
         })
     }).catch(err => {
         res.status(500).json({
