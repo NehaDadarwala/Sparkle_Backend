@@ -136,4 +136,33 @@ router.get('/getProductRefNumber', async (req, res) => {
 
 })
 
+router.put('/updateStock/:id' , async(req,res) =>{
+
+    await ProductMaster.findByIdAndUpdate(req.params.id, 
+        {
+            product_name: req.body.product_name,
+            category_id: req.body.category_id,
+            qty: req.body.qty,
+            price: req.body.price,
+            product_description: req.body.product_description,
+            product_ref_number: req.body.product_ref_number,
+            image : req.file.filename
+        },
+        {new :true}).then((data) => {
+        console.log(data)
+        res.status(200).json({
+            message: "User Updated",
+            sucess: true
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(404).json({
+            message: "Update failed",
+            sucess: false
+        })
+
+    });
+
+})
 module.exports = router;
