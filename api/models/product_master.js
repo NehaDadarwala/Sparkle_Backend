@@ -32,6 +32,10 @@ const productMasterSchema = new mongoose.Schema({
     image: {
         data: Buffer,
         contentType: String
+    },
+    image_name : {
+        type: String,
+        required: true
     }
     // image:{
     //     type: String,

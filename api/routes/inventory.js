@@ -81,8 +81,8 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
         image: {
             data: fs.readFileSync('public/images/'+ req.file.filename ) ,
             contentType: 'image/png '
-        }
-
+        },
+        image_name : req.file.filename
         //image: newfile_name
     });
     await newProduct.save()
@@ -120,7 +120,7 @@ router.get('/viewStock', async (req, res) => {
 
 router.get('/getProductRefNumber', async (req, res) => {
     ProductMaster.find({},{product_ref_number:1}).then(data => {
-        const transformedStock = data.map(item => ({ label: item.product_ref_number }));
+        const transformedStock = data.map(item => ({ label: item.product_ref_number,_id:item._id}));
         
         res.status(200).json({
             message: "Stock Retrived",
@@ -147,7 +147,11 @@ router.put('/updateStock/:id' , async(req,res) =>{
             price: req.body.price,
             product_description: req.body.product_description,
             product_ref_number: req.body.product_ref_number,
-            image : req.file.filename
+            image: {
+                data: fs.readFileSync('public/images/'+ req.file.filename ) ,
+                contentType: 'image/png '
+            },
+            image_name : req.file.filename
         },
         {new :true}).then((data) => {
         console.log(data)
@@ -166,4 +170,25 @@ router.put('/updateStock/:id' , async(req,res) =>{
     });
 
 })
+
+router.get('/getProduct/:id', (req, res) => {
+    const id = req.params.id
+
+    ProductMaster.findById(id).then((data) => {
+        res.status(200).json({
+            message: "Product Retrived",
+            sucess: true,
+            product: data
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(404).json({
+            message: "Product Not found",
+            sucess: false
+        })
+    });
+})
+
+
 module.exports = router;
