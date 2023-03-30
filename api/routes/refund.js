@@ -7,8 +7,9 @@ router.get('/find/:id', getBill, async (req, res) => {
 })
 
 router.post('/newRefund', async (req, res) => {
+    console.log("req.body:: ", req.body)
     const bill = new bills({
-        _id: generateBillNumber(),
+        _id: req.body._id,
         customerName: req.body.customerName,
         orderDate: req.body.orderDate,
         products: req.body.products,
@@ -34,17 +35,6 @@ async function getBill(req, res, next) {
 
     res.bill = bill
     next()
-}
-
-function pad2(n) { 
-    return n < 10 ? '0' + n : n 
-}
-
-
-const generateBillNumber = () => {
-    var date = new Date();
-    var billnumber = date.getFullYear().toString() + pad2(date.getMonth() + 1) + pad2(date.getDate()) + pad2(date.getHours()) + pad2(date.getMinutes()) + pad2(date.getSeconds())
-    return billnumber
 }
 
 module.exports = router;
