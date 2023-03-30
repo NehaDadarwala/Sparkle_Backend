@@ -3,7 +3,7 @@
 * *Date Created*: 30 MAR 2023
 * *Last Modification Date*: 30 MAR 2023
 * *Deployment URL*: <https://sparkle-api.onrender.com>
-* *Git URL*: <>
+* *Git URL*: <https://git.cs.dal.ca/dadarwala/Sparkle_Backend.git>
 
 ## Authors
 
