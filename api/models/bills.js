@@ -10,9 +10,9 @@ const billsSchema = new mongoose.Schema({
         type: Date,
         require: true
     },
-    paymentDetails: {
-        type: Object
-    },
+    // paymentDetails: {
+    //     type: Object
+    // },
     products: [
         {
             productName: {
