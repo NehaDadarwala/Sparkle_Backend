@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const billsSchema = new mongoose.Schema({
-    // billNumber: {
-    //     type: Number,
-    //     require: true
-    // },
     _id: String,
     customerName: {
         type: String,
@@ -13,6 +9,9 @@ const billsSchema = new mongoose.Schema({
     orderDate: {
         type: Date,
         require: true
+    },
+    paymentDetails: {
+        type: Object
     },
     products: [
         {
