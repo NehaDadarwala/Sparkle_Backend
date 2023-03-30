@@ -70,6 +70,7 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
     const ref_number = await generateProductRefNumber(req.body.category_id);
     console.log(ref_number)
     const newfile_name = ref_number + '.png'
+    console.log(req.file.filename)
     const newProduct = new ProductMaster({
         product_name: req.body.product_name,
         category_id: req.body.category_id,
