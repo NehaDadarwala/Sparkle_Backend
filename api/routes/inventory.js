@@ -9,8 +9,8 @@ const Storage = multer.diskStorage({
     destination: 'public/images',
     filename: async (req, file, cb) => {
         const ref_number = await generateProductRefNumber(req.body.category_id);
-        const newfile_name = ref_number + '.png'
-        cb(null, newfile_name);
+       // const newfile_name = ref_number + '.png'
+        cb(null, file.originalname);
     }
 })
 
@@ -77,12 +77,12 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
         price: req.body.price,
         product_description: req.body.product_description,
         product_ref_number: ref_number,
-        // image: {
-        //     data: fs.readFileSync('images/'+ req.file.filename ) ,
-        //     contentType: 'image/png '
-        // }
+        image: {
+            data: fs.readFileSync('public/images/'+ req.file.filename ) ,
+            contentType: 'image/png '
+        }
 
-        image: newfile_name
+        //image: newfile_name
     });
     await newProduct.save()
         .then((data) => {

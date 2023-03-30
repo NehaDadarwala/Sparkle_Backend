@@ -29,14 +29,14 @@ const productMasterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // image: {
-    //     data: Buffer,
-    //     contentType: String
-    // }
-    image:{
-        type: String,
-        required: true
+    image: {
+        data: Buffer,
+        contentType: String
     }
+    // image:{
+    //     type: String,
+    //     required: true
+    // }
 }, {
     collection: 'product_master'
 });
