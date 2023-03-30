@@ -6,23 +6,23 @@ const repairSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    phoneNumber: {
+    phone: {
         type: Number,
         require: true
     },
-    bagNumber: {
+    bag: {
         type: Number,
         require: true
     },
-    customerName: {
+    name: {
         type: String,
         require: true
     },
-    description: {
+    desc: {
         type: String,
         require: true
     },
-    estimatedCost: {
+    cost: {
         type: Number,
         require: true
     },
