@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const repair = require('../models/repairform');
+//const updateRepair = require('../models/modifyRepair');
+const mongoose = require('mongoose');
 
 router.get('/', async (req, res) => {
     res.json({message: "Repair works"})
@@ -64,35 +66,31 @@ router.get('/list' ,async (req ,res) => {
 
 router.put('/modify/:id', async (req, res) => {
   
-  try {
     const userId = req.params.id;
-  const { repairBag, status } = req.body;
-  const updatedRepair = await User.findByIdAndUpdate(
-    userId,
-    { repairBag, status },
-    { new: true }
-  );
- 
+    console.log(userId)
+    const { bagNumber, status } = req.body;
 
-    if (!updatedRepair) {
-      return res.status(404).json({
+    try {
+      const modify = await repair.findByIdAndUpdate({ _id: userId }, { bagNumber, status }, { new: true });
+      if (!modify) {
+        return res.status(404).json({
+          success: false,
+          message: 'Repair not found',
+        });
+      }
+      res.json({
+        success: true,
+        message: 'Repair updated',
+        repair: modify,     
+      });
+      console.log(modify)
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
         success: false,
-        message: 'Repair not found',
+        message: 'Internal server error',
       });
     }
-
-    res.json({
-      success: true,
-      message: 'Repair updated',
-      user: updatedRepair,
-    });
-  }catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error',
-    });
-  }
 });
 
 module.exports = router;
