@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const repair = require('../models/repairform');
-//const updateRepair = require('../models/modifyRepair');
 const mongoose = require('mongoose');
 
 router.get('/', async (req, res) => {
@@ -29,9 +28,6 @@ router.post('/create', async (req, res) => {
     instruction: req.body.instruction,
   });
 
-  console.log("REQ BODY :: ", req.body)
-  console.log("REPAIR FORM :: ", repairForm)
-
   try {
     await repairForm.save();
     res.json({
@@ -51,12 +47,12 @@ router.post('/create', async (req, res) => {
 router.get('/list', async (req, res) => {
 
   try {
-    const list = await repair.find({}, { _id: 1, name: 1, phone: 1, status: 1, cost: 1, bag: 1 });
+    const list = await repair.find({}, { id: 1, _id: 1, name: 1, phone: 1, status: 1, cost: 1, bag: 1 });
     res.json({
       success: true,
       message: 'list of repairs',
       list,
-    }); console.log(list)
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -66,14 +62,13 @@ router.get('/list', async (req, res) => {
   }
 })
 
-router.put('/modify/:id', async (req, res) => {
+router.put('/modify/:_id', async (req, res) => {
 
-  const userId = req.params.id;
-  console.log(userId)
-  const { bag, status } = req.body;
+  const userId = req.params._id;
+  const { status } = req.body;
 
   try {
-    const modify = await repair.findByIdAndUpdate({ _id: userId }, { bag, status }, { new: true });
+    const modify = await repair.findByIdAndUpdate({ _id: userId }, { status }, { new: true });
     if (!modify) {
       return res.status(404).json({
         success: false,
@@ -83,9 +78,9 @@ router.put('/modify/:id', async (req, res) => {
     res.json({
       success: true,
       message: 'Repair updated',
-      repair: modify,
+      status: modify.status,
     });
-    console.log(modify)
+
   } catch (error) {
     console.error(error);
     res.status(500).json({
