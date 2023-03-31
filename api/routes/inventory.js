@@ -100,7 +100,7 @@ router.post('/addProduct', upload.single("image"), async (req, res) => {
 })
 
 router.get('/viewStock', async (req, res) => {
-    ProductMaster.find({}).then(data => {
+    ProductMaster.find({ qty: { $gt: 0 } }).then(data => {
         res.status(200).json({
             message: "Stock Retrived",
             sucess: "true",
