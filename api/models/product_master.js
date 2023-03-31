@@ -1,3 +1,4 @@
+//Auther : Sakshi Chaitanya Vaidya, B00917159
 const mongoose = require('mongoose');
 
 const productMasterSchema = new mongoose.Schema({
