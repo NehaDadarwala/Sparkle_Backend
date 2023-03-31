@@ -1,3 +1,8 @@
+/**
+ * Author : Neha Dadarwla
+ * Email : neha.dadarwala@dal.ca
+ */
+
 const mongoose = require('mongoose')
 
 const billsSchema = new mongoose.Schema({
