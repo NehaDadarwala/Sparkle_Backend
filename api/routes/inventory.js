@@ -1,4 +1,9 @@
-//Auther : Sakshi Chaitanya Vaidya, B00917159
+/**
+ * Author : Sakshi Chaitanya Vaidya
+ * Banner No : B00917159
+ * Email: sakshi.vaidya@dal.ca
+ */
+
 const express = require('express')
 const router = express.Router()
 const multer = require('multer');
