@@ -6,13 +6,13 @@
 const express = require('express')
 const router = express.Router()
 const bills = require('../models/bills')
+const ProductMaster = require('../models/product_master');
 
 router.get('/find/:id', getBill, async (req, res) => {
     res.json(res.bill)
 })
 
-router.post('/newRefund', async (req, res) => {
-    console.log("req.body:: ", req.body)
+router.post('/newRefund', updateInventory, async (req, res) => {
     const bill = new bills({
         _id: req.body._id,
         customerName: req.body.customerName,
@@ -39,6 +39,21 @@ async function getBill(req, res, next) {
     }
 
     res.bill = bill
+    next()
+}
+
+async function updateInventory(req, res, next) {
+    let products = req.body.products
+    try {
+        for (let i = 0; i < products.length; i++) {
+            const product = await ProductMaster.findById(products[i]._id)
+            let quantity = product.qty + 1
+            product.qty = quantity
+            await product.save()
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
     next()
 }
 
