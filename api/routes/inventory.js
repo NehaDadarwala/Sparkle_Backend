@@ -1,4 +1,9 @@
-//Auther : Sakshi Chaitanya Vaidya, B00917159
+/**
+ * Author : Sakshi Chaitanya Vaidya
+ * Banner No : B00917159
+ * Email: sakshi.vaidya@dal.ca
+ */
+
 const express = require('express')
 const router = express.Router()
 const multer = require('multer');
@@ -51,12 +56,12 @@ async function generateProductRefNumber(category_id) {
 
 router.get('/category', async (req, res) => {
     CategoryMaster.find({}).then(data => {
-        const transformedStock = data.map(item => ({ label: item.category_name, _id: item._id }));
+        const newCategory = data.map(item => ({ label: item.category_name, _id: item._id }));
 
         res.status(200).json({
             message: "Category Retrived",
             sucess: "true",
-            category: transformedStock
+            category: newCategory
         })
     }).catch(err => {
         res.status(500).json({
@@ -119,12 +124,12 @@ router.get('/viewStock', async (req, res) => {
 
 router.get('/getProductRefNumber', async (req, res) => {
     ProductMaster.find({}, { product_ref_number: 1 }).then(data => {
-        const transformedStock = data.map(item => ({ label: item.product_ref_number, _id: item._id }));
+        const newRefNumber = data.map(item => ({ label: item.product_ref_number, _id: item._id }));
 
         res.status(200).json({
             message: "Stock Retrived",
             sucess: "true",
-            product_ref_number: transformedStock
+            product_ref_number: newRefNumber
         })
     }).catch(error => {
         res.status(500).json({
