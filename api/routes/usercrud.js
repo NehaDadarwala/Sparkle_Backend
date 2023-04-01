@@ -131,6 +131,46 @@ router.post('/getalluser', async (req,res)=>{
 })
 
 
+//update a user
+router.put("/updateuser",async (req,res)=>{
+    try{
+        const token =req.body.authtoken;
+        console.log(token)
+        const decoded =await jsonaouthtoken.verify(token, JWT_SECRET);
+        const getuser=decoded.user
+        console.log(getuser.id)
+        const userid=getuser.id;
+        const user= await User.findById(userid).select("-password");
+        // res.send(user)
+        if(user.role=='admin'){
+            try{
+            
+            const filter = { email: req.body.email };
+            const update = req.body;
+            
+            
+            const doc = await User.findOneAndUpdate(filter, update, {
+            returnOriginal: false
+            
+            });
+            res.send("updated")
+        
+            }catch(error){
+                console.log(error)
+                res.status(500).send("some error occured while updating please contact customer support") 
+            }
+        }
+        else{
+            res.status(400).send("permission not allowed")
+        }
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).send("something is wrong call customer support")
+    }
+  
+})
+
 
 
 //delete a user
