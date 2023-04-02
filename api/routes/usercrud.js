@@ -155,7 +155,7 @@ router.put("/updateuser",async (req,res)=>{
             });
             res.send({message:"updated"})
         }else{
-            res.status(400).send("not allowed to change password as an admin yourself please contact support");
+            res.status(400).send("not allowed to update yourself or another admin as an admin yourself please contact support");
         }
             }catch(error){
                 console.log(error)
