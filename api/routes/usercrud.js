@@ -144,17 +144,19 @@ router.put("/updateuser",async (req,res)=>{
         // res.send(user)
         if(user.role=='admin'){
             try{
-            
+            if((!req.body.password && req.body.email!=user.email) ){
             const filter = { email: req.body.email };
-            const update = req.body;
+            const update = req.body.updatepayload;
             
             
             const doc = await User.findOneAndUpdate(filter, update, {
             returnOriginal: false
             
             });
-            res.send("updated")
-        
+            res.send({message:"updated"})
+        }else{
+            res.status(400).send("not allowed to change password as an admin yourself please contact support");
+        }
             }catch(error){
                 console.log(error)
                 res.status(500).send("some error occured while updating please contact customer support") 
