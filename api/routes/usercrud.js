@@ -1,3 +1,5 @@
+// This code is an adpatation of code provided in the gitrepo: https://github.com/CodeWithHarry/iNotebook-React/tree/master/backend/routes provided by codewitharry
+
 const express= require("express");
 const router=express.Router();
 const User =require("../models/Usermanagementmodel");
