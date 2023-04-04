@@ -336,9 +336,9 @@ async function run() {
 - [MongoDb](https://www.mongodb.com/docs/drivers/node/v3.6/usage-examples/count/)'s Code was used to count document that match particular id 
 - [MongoDb](https://www.mongodb.com/docs/drivers/node/v3.6/usage-examples/count/)'s Code was modified by the code according to the requirement
 
-### api\models\bills.js
+### api\models\Usermanagementmodel.js
 
-*Lines 3 - 29*
+*Lines 1 - 30*
 
 ```
 const mongoose=require('mongoose');
