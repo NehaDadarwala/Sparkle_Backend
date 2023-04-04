@@ -11,7 +11,7 @@
 
 * [Neha Dadarwala](neha.dadarwala@dal.ca) - *(Full Stack Developer)*
 * [Vrutika Kakadiya](vrutika.kakadiya@dal.ca) - *(Designer and Integrator)*
-* [Hargun.Chhabra](Hargun.Chhabra@dal.ca) - *(Front End Developer)*
+* [Hargun.Chhabra](Hargun.Chhabra@dal.ca) - *(Full Stack Developer)*
 * [Sakshi Chaitanya Vaidya](sakshi.vaidya@dal.ca) - *(Full Stack Developer)*
 * [Dev Pratap Singh Rajawat](dv269119@dal.ca) - *(Full Stack Developer)*
 
