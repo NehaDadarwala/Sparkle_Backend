@@ -336,9 +336,9 @@ async function run() {
 - [MongoDb](https://www.mongodb.com/docs/drivers/node/v3.6/usage-examples/count/)'s Code was used to count document that match particular id 
 - [MongoDb](https://www.mongodb.com/docs/drivers/node/v3.6/usage-examples/count/)'s Code was modified by the code according to the requirement
 
-### api\models\Usermanagementmodel.js
+### api\models\Usermanagementmodel.js 
 
-*Lines 1 - 30*
+*Lines 3 - 29*
 
 ```
 const mongoose=require('mongoose');
@@ -392,6 +392,7 @@ const BlogPost = new Schema({
 - The code in [Mongoose](https://www.npmjs.com/package/mongoose)  was implemented by using the schema format
 - [Mongoose](https://www.npmjs.com/package/mongoose)'s Code was used to provide a schema for the collection
 - [Mongoose](https://www.npmjs.com/package/mongoose)'s Code was modified by the schema according to the tutorial's requirement
+- The code was also referenced from [React JS Tutorials For Beginners](https://www.codewithharry.com/videos/react-tutorials-in-hindi-43/)
 
 ### api/routes/usercrud.js
 
@@ -624,9 +625,7 @@ router.delete("/delete",async (req,res)=>{
 
 module.exports=router
 ```
-
-The whole code above was created by adapting the code in [React JS Tutorials For Beginners](https://www.codewithharry.com/videos/react-tutorials-in-hindi-43/) from tutorial number 43 - 54 (it is not the exact implementation the whole code was restructured in order to implement user role based apis): 
-
+The whole code above was created by adapting the code in [React JS Tutorials For Beginners](https://www.codewithharry.com/videos/react-tutorials-in-hindi-43/) from tutorial number 43 - 54 (it is not the exact implementation the whole code was restructured in order to implement user role based apis)
 ## Acknowledgments
 
 * A very special thanks to Professor, TA's from Hargun Chhabra, really i learned a lot from this course.
