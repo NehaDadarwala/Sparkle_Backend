@@ -625,8 +625,6 @@ router.delete("/delete",async (req,res)=>{
 
 module.exports=router
 ```
-The whole code above was created by adapting the code in [React JS Tutorials For Beginners](https://www.codewithharry.com/videos/react-tutorials-in-hindi-43/) from tutorial number 43 - 54 (it is not the exact implementation the whole code was restructured in order to implement user role based apis)
-## Acknowledgments
+The whole code above was created by adapting the code in [React JS Tutorials For Beginners](https://www.codewithharry.com/videos/react-tutorials-in-hindi-43/) from tutorial number 43 - 54 (it is not the exact implementation the whole code was restructured in order to implement user role based apis) his [gitrepolink](https://github.com/CodeWithHarry/iNotebook-React/tree/master/backend)
 
-* A very special thanks to Professor, TA's from Hargun Chhabra, really i learned a lot from this course.
-* I would also like to acknowledge [codewithharry](https://www.codewithharry.com/) as many times i required a quick and instant support form my problems his tutorials usually had that solution.
+
