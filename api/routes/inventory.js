@@ -10,6 +10,7 @@ const multer = require('multer');
 const CategoryMaster = require('../models/category_master');
 const ProductMaster = require('../models/product_master');
 const orderSchema = require('../models/order');
+const fs = require('fs');
 
 const Storage = multer.diskStorage({
     destination: 'public/images',
