@@ -38,5 +38,15 @@ router.post('/special', upload.single('image'), async (req, res) => {
         res.status(500).json({ message: 'Error saving special to MongoDB' });
       }
 });
+
+router.get('/list', async (req, res) => {
+    try {
+      const specials = await special.find({}, 'name address phone estimatedCost' );
+      res.status(200).json(specials);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error fetching specials from MongoDB' });
+    }
+  });
 module.exports = router;
 
