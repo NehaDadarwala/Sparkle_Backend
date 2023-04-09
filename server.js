@@ -26,14 +26,14 @@ app.use("/order",require("./api/routes/orderDetails"))
 const repairRouter = require('./api/routes/repairs')
 app.use('/repair', repairRouter)
 
-<<<<<<< Updated upstream
+
 app.use("/user",require("./api/routes/usercrud"))
 
-
-app.listen(3000, () => console.log('Server Started'))
-=======
 const specialRouter = require('./api/routes/sorder')
 app.use('/sorder', specialRouter)
 
 app.listen(3000, () => console.log('Server Started'))
->>>>>>> Stashed changes
+
+
+
+
