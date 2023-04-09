@@ -9,7 +9,7 @@ const router = express.Router()
 const multer = require('multer');
 const CategoryMaster = require('../models/category_master');
 const ProductMaster = require('../models/product_master');
-const fs = require('fs');
+const orderSchema = require('../models/order');
 
 const Storage = multer.diskStorage({
     destination: 'public/images',
@@ -200,5 +200,22 @@ router.get('/getProduct/:id', (req, res) => {
         });
 })
 
+router.get('/getOrders' , async(req,res) =>{
+
+    orderSchema.find({}).then(data => {
+        
+        res.status(200).json({
+            message: "Orders Retrived",
+            sucess: "true",
+            order : data
+        })
+    }).catch(error => {
+        res.status(500).json({
+            message: "Failed",
+            sucess: "false"
+        })
+        console.log(error);
+    });
+})
 
 module.exports = router;
