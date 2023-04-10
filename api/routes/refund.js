@@ -32,7 +32,7 @@ async function getBill(req, res, next) {
     let bill
     try {
         bill = await orders.find({ orderId: req.params.id })
-        if (bill == null) {
+        if (bill.length == 0) {
             return res.status(404).json({ message: 'Cannot find bill' })
         }
     } catch (error) {
