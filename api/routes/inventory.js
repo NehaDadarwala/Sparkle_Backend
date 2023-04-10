@@ -204,11 +204,17 @@ router.get('/getProduct/:id', (req, res) => {
 router.get('/getOrders' , async(req,res) =>{
 
     orderSchema.find({}).then(data => {
-        
+        console.log(data);
+        console.log(data.orderId)
+        const orderData = data.map(order => {
+            const { orderId, orderDate, totalPrice,customerName } = order;
+            return { orderId, orderDate, totalPrice,customerName };
+          });
+          console.log(orderData)
         res.status(200).json({
             message: "Orders Retrived",
             sucess: "true",
-            order : data
+            order : orderData
         })
     }).catch(error => {
         res.status(500).json({
