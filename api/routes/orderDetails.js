@@ -9,6 +9,7 @@ const orders = require('../models/order')
 
 
 router.post('/addOrder', async (req, res) => {
+    console.log("hitting api", req.body)
     const order = new orders({
         orderId: req.body.orderId,
         orderDate: req.body.orderDate,
@@ -17,8 +18,10 @@ router.post('/addOrder', async (req, res) => {
         customerDetails: req.body.customerDetails,
         orderDetails: req.body.orderDetails,
     })
+    console.log("order details", order)
     try {
         const neworder = await order.save()
+        console.log("new order", neworder)
         res.status(201).json({ message: "New order added", success: true })
     } catch (error) {
         res.status(500).json({ message: error.message, success: false })
