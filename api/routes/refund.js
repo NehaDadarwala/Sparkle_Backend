@@ -6,6 +6,7 @@
 const express = require('express')
 const router = express.Router()
 const bills = require('../models/bills')
+const orders = require('../models/order')
 const ProductMaster = require('../models/product_master');
 
 router.get('/find/:id', getBill, async (req, res) => {
@@ -30,7 +31,7 @@ router.post('/newRefund', updateInventory, async (req, res) => {
 async function getBill(req, res, next) {
     let bill
     try {
-        bill = await bills.findById(req.params.id)
+        bill = await orders.find({ orderId: req.params.id })
         if (bill == null) {
             return res.status(404).json({ message: 'Cannot find bill' })
         }
@@ -43,7 +44,7 @@ async function getBill(req, res, next) {
 }
 
 async function updateInventory(req, res, next) {
-    let products = req.body.products
+    let products = req.body.orderDetails
     try {
         for (let i = 0; i < products.length; i++) {
             const product = await ProductMaster.findById(products[i]._id)
