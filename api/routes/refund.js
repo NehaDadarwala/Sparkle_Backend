@@ -44,7 +44,7 @@ async function getBill(req, res, next) {
 }
 
 async function updateInventory(req, res, next) {
-    let products = req.body.orderDetails
+    let products = req.body.products
     try {
         for (let i = 0; i < products.length; i++) {
             const product = await ProductMaster.findById(products[i]._id)
