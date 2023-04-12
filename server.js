@@ -16,8 +16,12 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use('/public',express.static('public'));  
 app.use(cors());
+
 const refundRouter  = require('./api/routes/refund')
 app.use('/refund', refundRouter)
+
+const salesRouter  = require('./api/routes/salesReport')
+app.use('/sales', salesRouter)
 
 const inventoryRouter = require('./api/routes/inventory')
 app.use('/inventory', inventoryRouter)
