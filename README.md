@@ -1,4 +1,4 @@
-# Assignment 3
+# Sparkle
 
 * *Date Created*: 30 MAR 2023
 * *Last Modification Date*: 30 MAR 2023
